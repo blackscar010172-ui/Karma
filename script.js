@@ -33,8 +33,8 @@ btn.addEventListener("click", () => {
   `;
   document.body.appendChild(error);
 
-  // 🎵 1.8초 후 YouTube로 이동
+  // 🎵 1.8초 후 music.html로 이동
   setTimeout(() => {
-    window.location.href = "https://www.youtube.com/embed/4XJdZkZz7-8?autoplay=1";
+    window.location.href = "music.html";
   }, 1800);
 });
