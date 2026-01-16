@@ -23,6 +23,17 @@ function triggerFear() {
   setInterval(() => {
     docEl.classList.toggle("shake");
   }, 1200);
+  const confirmBtn = document.getElementById("confirmBtn");
+
+confirmBtn.addEventListener("click", () => {
+  confirmBtn.textContent = "PROCESSING...";
+  confirmBtn.disabled = true;
+
+  setTimeout(() => {
+    triggerFear(); // 기존 오류 연출
+    confirmBtn.textContent = "ACCESS DENIED";
+  }, 1200);
+});
 
   // 경고 깜빡임
   setInterval(() => {
