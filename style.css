@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+  background: #0b0b0b;
+  color: #e5e5e5;
+  font-family: "Courier New", monospace;
+}
+
+.terminal {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+#output {
+  white-space: pre-line;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: none;
+  border: 1px solid #888;
+  color: #e5e5e5;
+  font-family: inherit;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background: #111;
+}
+
+.hidden {
+  display: none;
+}
