@@ -23,7 +23,6 @@ function playErrorTone() {
 btn.addEventListener("click", () => {
   playErrorTone();
 
-  // 🔴 에러 화면
   const error = document.createElement("div");
   error.className = "error-screen";
   error.innerHTML = `
@@ -33,8 +32,8 @@ btn.addEventListener("click", () => {
   `;
   document.body.appendChild(error);
 
-  // 🎵 1.8초 후 music.html로 이동
+  // 1.8초 후 Spotify 링크로 이동
   setTimeout(() => {
-    window.location.href = "music.html";
+    window.location.href = "https://open.spotify.com/track/7xGfFoTpQ2E7fRF5lN10tr";
   }, 1800);
 });
