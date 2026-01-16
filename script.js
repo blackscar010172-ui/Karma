@@ -6,7 +6,7 @@ btn.addEventListener("click", () => {
   btn.textContent = "VERIFYING...";
   btn.disabled = true;
 
-  // 진동 시도
+  // 진동
   if (navigator.vibrate) {
     navigator.vibrate([150, 100, 150]);
   }
@@ -20,10 +20,18 @@ btn.addEventListener("click", () => {
     doc.classList.add("glitch");
   }, 600);
 
-  // 블랙아웃
+  // 블랙아웃 오버레이 생성
   setTimeout(() => {
-    document.body.innerHTML = "";
-    document.body.style.background = "black";
+    const blackout = document.createElement("div");
+    blackout.id = "blackout";
+    blackout.style.position = "fixed";
+    blackout.style.top = "0";
+    blackout.style.left = "0";
+    blackout.style.width = "100vw";
+    blackout.style.height = "100vh";
+    blackout.style.background = "black";
+    blackout.style.zIndex = "9999";
+    document.body.appendChild(blackout);
 
     if (navigator.vibrate) {
       navigator.vibrate(300);
@@ -40,5 +48,5 @@ btn.addEventListener("click", () => {
         KMIA SECURITY PROTOCOL 7A
       </div>
     `;
-  }, 3000);
+  }, 3200);
 });
