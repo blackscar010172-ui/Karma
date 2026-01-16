@@ -1,6 +1,6 @@
 const btn = document.getElementById("confirmBtn");
 
-// 🔊 짧은 경고음 (Web Audio)
+// 🔊 Web Audio 경고음
 function playErrorTone() {
   const ctx = new (window.AudioContext || window.webkitAudioContext)();
   const osc = ctx.createOscillator();
@@ -33,8 +33,8 @@ btn.addEventListener("click", () => {
   `;
   document.body.appendChild(error);
 
-  // 🎵 음악 페이지로 이동
+  // 🎵 1.8초 후 YouTube로 이동
   setTimeout(() => {
-    window.location.href = "music.html";
+    window.location.href = "https://www.youtube.com/embed/4XJdZkZz7-8?autoplay=1";
   }, 1800);
 });
