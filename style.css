@@ -124,3 +124,19 @@ body {
   text-transform: uppercase;
   pointer-events: none;
 }
+
+#confirmBtn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  background: #111;
+  color: #e6e2d8;
+  border: none;
+  border-top: 2px solid #7a0000;
+  font-family: inherit;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
