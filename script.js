@@ -23,6 +23,9 @@ function playErrorTone() {
 btn.addEventListener("click", () => {
   playErrorTone();
 
+  // 기존 iframe/동적 요소 제거
+  document.querySelectorAll('iframe').forEach(f => f.remove());
+
   const error = document.createElement("div");
   error.className = "error-screen";
   error.innerHTML = `
@@ -32,8 +35,8 @@ btn.addEventListener("click", () => {
   `;
   document.body.appendChild(error);
 
-  // 1.8초 후 Spotify 링크로 이동
+  // 1.8초 후 YouTube 영상 페이지로 이동
   setTimeout(() => {
-    window.location.href = "https://open.spotify.com/track/7xGfFoTpQ2E7fRF5lN10tr";
+    window.location.href = "https://youtu.be/g7wCr-IOpqY?si=6ftxZIc4iLxZlvPo";
   }, 1800);
 });
