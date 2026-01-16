@@ -16,10 +16,12 @@ body {
   position: relative;
   background: #e6e2d8;
   color: #1a1a1a;
-  width: 90%;
-  max-width: 420px;
-  padding: 20px;
-  border: 1px solid #555;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 24px 18px;
+  border: none;
+}
+
 }
 
 .header {
