@@ -54,3 +54,40 @@ body {
 #status {
   font-weight: bold;
 }
+body {
+  font-family: "Courier New", Courier, monospace;
+}
+
+.card {
+  background: #f2f0e8;
+  color: #1a1a1a;
+  border: 1px solid #7a7a7a;
+}
+
+.agency,
+.title {
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.value,
+.dates {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.name {
+  font-weight: bold;
+  letter-spacing: 0.12em;
+}
+
+.dates {
+  margin-top: 14px;
+  border-top: 1px dashed #999;
+  padding-top: 8px;
+}
+
+#status {
+  font-weight: bold;
+  text-transform: uppercase;
+}
