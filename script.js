@@ -1,54 +1,40 @@
 const btn = document.getElementById("confirmBtn");
 
-// 🔊 Web Audio 경고음
+// 🔊 짧은 경고음 (Web Audio)
 function playErrorTone() {
   const ctx = new (window.AudioContext || window.webkitAudioContext)();
   const osc = ctx.createOscillator();
   const gain = ctx.createGain();
 
   osc.type = "square";
-  osc.frequency.value = 150;
+  osc.frequency.value = 160;
 
   gain.gain.setValueAtTime(0.0001, ctx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.35, ctx.currentTime + 0.04);
-  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.8);
+  gain.gain.exponentialRampToValueAtTime(0.3, ctx.currentTime + 0.03);
+  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.4);
 
   osc.connect(gain);
   gain.connect(ctx.destination);
 
   osc.start();
-  osc.stop(ctx.currentTime + 0.8);
+  osc.stop(ctx.currentTime + 0.4);
 }
 
 btn.addEventListener("click", () => {
   playErrorTone();
 
-  // 🔴 1단계: 에러 로그 화면 (유지됨)
+  // 🔴 에러 화면
   const error = document.createElement("div");
   error.className = "error-screen";
   error.innerHTML = `
-    ERROR 403 :: UNAUTHORIZED ACCESS DETECTED<br>
-    SECURITY VIOLATION LOGGED<br>
-    CREDENTIAL STATUS : EXPIRED<br><br>
-    ERROR 403 :: UNAUTHORIZED ACCESS DETECTED<br>
-    SECURITY VIOLATION LOGGED<br>
-    CREDENTIAL STATUS : EXPIRED<br><br>
-    ERROR 403 :: UNAUTHORIZED ACCESS DETECTED<br>
-    SECURITY VIOLATION LOGGED<br>
-    CREDENTIAL STATUS : EXPIRED
+    ACCESS DENIED<br>
+    UNAUTHORIZED CREDENTIAL<br>
+    SECURITY VIOLATION LOGGED
   `;
   document.body.appendChild(error);
 
-  // 🔴 2단계: 이름을 위에 덮기
+  // 🎵 음악 페이지로 이동
   setTimeout(() => {
-    const name = document.createElement("div");
-    name.className = "name-overlay";
-    name.textContent = "MIKHAIL";
-    document.body.appendChild(name);
-  }, 700);
-
-  // 💀 3단계: 이름 사라진 뒤 사이트 이탈
-  setTimeout(() => {
-    location.replace("about:blank");
-  }, 2600);
+    window.location.href = "music.html";
+  }, 1800);
 });
