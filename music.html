@@ -1,1 +1,58 @@
-<iframe src="https://www.youtube.com/embed/g7wCr-IOpqY?autoplay=1&mute=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Audio Channel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: monospace;
+      text-align: center;
+      color: #fff;
+    }
+    iframe {
+      width: 90vw;
+      max-width: 420px;
+      height: 235px;
+      border: none;
+      margin-top: 20px;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background: #111;
+      color: white;
+      border: 1px solid #444;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Click ▶ to play Video Days – Sometimes</h2>
+  <button id="playBtn">▶ Play</button>
+  <div id="playerContainer"></div>
+
+  <script>
+    const btn = document.getElementById("playBtn");
+    const container = document.getElementById("playerContainer");
+
+    btn.addEventListener("click", () => {
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube.com/embed/g7wCr-IOpqY?autoplay=1";
+      iframe.allow = "autoplay; encrypted-media";
+      iframe.allowFullscreen = true;
+      container.appendChild(iframe);
+
+      btn.disabled = true;
+      btn.textContent = "Playing…";
+    });
+  </script>
+</body>
+</html>
