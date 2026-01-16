@@ -2,52 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Audio Channel</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    body {
-      margin: 0;
-      background: black;
-      color: #777;
-      font-family: monospace;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
-
-    .frame {
-      width: 90vw;
-      max-width: 400px;
-    }
-
-    .label {
-      margin-bottom: 12px;
-      font-size: 12px;
-      letter-spacing: 2px;
-    }
-
-    iframe {
-      width: 100%;
-      height: 225px;
-      border: none;
-    }
-  </style>
+  <title>KMIA Verification</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div class="frame">
-    <div class="label">
-      AUDIO CHANNEL — EXTERNAL SOURCE
-    </div>
+  <div id="document" class="paper">
+    <h1>KARZENIC MINISTRY OF INTERNAL AFFAIRS</h1>
+    <h2>ROYAL HOUSEHOLD SECURITY BUREAU</h2>
 
-    <iframe
-      src="https://www.youtube.com/embed/4XJdZkZz7-8?autoplay=1"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
+    <hr />
+
+    <p><strong>SUBJECT</strong><br />
+      Rozan Kiverovich Skarkov<br />
+      Royal Guard
+    </p>
+
+    <p><strong>ISSUED</strong><br />Wed Aug 17 1949</p>
+    <p><strong>EXPIRES</strong><br />Sun Aug 17 1952</p>
+
+    <hr />
+
+    <p class="status">STATUS : <span>EXPIRED</span></p>
   </div>
 
+  <button id="confirmBtn">CONFIRM IDENTITY</button>
+
+  <script src="script.js"></script>
 </body>
 </html>
