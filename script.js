@@ -30,14 +30,8 @@ function triggerFear() {
   }, 600);
 }
 
-triggerFear();
-button {
-  width: 100%;
-  margin-top: 14px;
-  padding: 10px;
-  background: #1a1a1a;
-  color: #e6e2d8;
-  border: 1px solid #555;
-  font-family: inherit;
-  letter-spacing: 0.15em;
-}
+const confirmBtn = document.getElementById("confirmBtn");
+
+confirmBtn.addEventListener("click", () => {
+  triggerFear();
+});
