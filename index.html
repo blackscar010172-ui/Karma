@@ -31,7 +31,6 @@
       overflow: hidden;
     }
 
-    /* 종이 마모 느낌 */
     .document::after {
       content: "";
       position: absolute;
@@ -73,20 +72,27 @@
       font-size: 14px;
     }
 
-    /* 붉은 도장 */
+    .fail {
+      color: #8b0000;
+      font-weight: bold;
+      margin-top: 6px;
+    }
+
+    /* === 도장 본체 === */
     .stamp {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) rotate(-18deg) scale(0.8);
-      border: 3px solid rgba(139, 0, 0, 0.8);
-      color: rgba(139, 0, 0, 0.8);
+      border: 3px solid rgba(139, 0, 0, 0.85);
+      color: rgba(139, 0, 0, 0.85);
       padding: 14px 22px;
       font-size: 26px;
       font-weight: bold;
       letter-spacing: 2px;
       opacity: 0;
       pointer-events: none;
+      filter: blur(0.2px);
     }
 
     .stamp::after {
@@ -96,9 +102,26 @@
       border: 1px solid rgba(139, 0, 0, 0.6);
     }
 
-    /* 쿵 효과 */
+    /* 잉크 번짐 레이어 */
+    .stamp::before {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(139,0,0,0.25), transparent 60%),
+        radial-gradient(circle at 70% 60%, rgba(139,0,0,0.2), transparent 65%);
+      opacity: 0;
+      filter: blur(6px);
+      z-index: -1;
+    }
+
+    /* 찍힐 때 */
     .stamp.show {
       animation: stampHit 0.35s ease-out forwards;
+    }
+
+    .stamp.show::before {
+      animation: inkBleed 0.6s ease-out forwards;
     }
 
     @keyframes stampHit {
@@ -107,7 +130,7 @@
         transform: translate(-50%, -60%) rotate(-18deg) scale(1.2);
       }
       60% {
-        opacity: 0.9;
+        opacity: 0.95;
         transform: translate(-50%, -50%) rotate(-18deg) scale(0.95);
       }
       100% {
@@ -116,10 +139,15 @@
       }
     }
 
-    .fail {
-      color: #8b0000;
-      font-weight: bold;
-      margin-top: 8px;
+    @keyframes inkBleed {
+      0% {
+        opacity: 0;
+        filter: blur(10px);
+      }
+      100% {
+        opacity: 0.7;
+        filter: blur(18px);
+      }
     }
   </style>
 </head>
@@ -154,7 +182,7 @@
     </div>
 
     <div class="status" id="status">
-      Status: Pending verification…
+      Status: Pending verification.
     </div>
 
     <div class="stamp" id="stamp">EXPIRED</div>
@@ -165,15 +193,15 @@
     const stampEl = document.getElementById("stamp");
 
     setTimeout(() => {
-      statusEl.textContent = "Status: Verifying authenticity…";
+      statusEl.textContent = "Status: Verifying authenticity.";
     }, 1200);
 
     setTimeout(() => {
       statusEl.innerHTML = `
-        Status: ❌ INVALID<br>
+        Status: INVALID<br>
         <div class="fail">
-          REASON: CREDENTIAL EXPIRED<br>
-          ISSUED YEAR: 1930
+          Reason: Credential expired.<br>
+          Issued year: 1930
         </div>
       `;
       stampEl.classList.add("show");
