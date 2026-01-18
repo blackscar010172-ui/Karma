@@ -1,28 +1,57 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>KMIA Mobile Verification</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <title>NFC Verification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .box {
+      border: 1px solid #444;
+      padding: 20px;
+      width: 90%;
+      max-width: 320px;
+      text-align: center;
+    }
+
+    .fail {
+      color: #ff4444;
+      margin-top: 12px;
+    }
+  </style>
 </head>
 
 <body>
-  <main class="screen">
-    <div class="header">
-      <div class="title">KMIA SECURITY</div>
-      <div class="subtitle">NFC VERIFICATION TERMINAL</div>
-    </div>
+  <div class="box">
+    <div id="text">NFC CARD DETECTED</div>
+  </div>
 
-    <div class="terminal" id="terminal"></div>
+  <script>
+    const text = document.getElementById("text");
 
-    <div class="footer">
-      <span>AUTHORIZED PERSONNEL ONLY</span>
-    </div>
-  </main>
+    setTimeout(() => {
+      text.innerHTML = "VERIFYING IDENTITY...";
+    }, 1000);
 
-  <audio id="beep" src="beep.mp3" preload="auto"></audio>
-  <script src="script.js"></script>
+    setTimeout(() => {
+      text.innerHTML = `
+        ❌ VERIFICATION FAILED<br><br>
+        STATUS: EXPIRED<br>
+        ISSUED: 1930
+      `;
+      text.className = "fail";
+    }, 2500);
+  </script>
 </body>
 </html>
