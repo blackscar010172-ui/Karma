@@ -17,6 +17,7 @@
     }
 
     .document {
+      position: relative;
       background: #f4f1ea;
       color: #111;
       width: 90%;
@@ -51,6 +52,30 @@
       font-size: 14px;
     }
 
+    /* 붉은 도장 */
+    .stamp {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-18deg);
+      border: 3px solid rgba(139, 0, 0, 0.8);
+      color: rgba(139, 0, 0, 0.8);
+      padding: 14px 22px;
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      opacity: 0.85;
+      display: none;
+      pointer-events: none;
+    }
+
+    .stamp::after {
+      content: "";
+      position: absolute;
+      inset: 3px;
+      border: 1px solid rgba(139, 0, 0, 0.6);
+    }
+
     .fail {
       color: #8b0000;
       font-weight: bold;
@@ -60,7 +85,7 @@
 </head>
 
 <body>
-  <div class="document" id="doc">
+  <div class="document">
     <div class="title">IDENTITY CREDENTIAL</div>
 
     <div class="field">
@@ -91,10 +116,13 @@
     <div class="status" id="status">
       Status: Pending verification…
     </div>
+
+    <div class="stamp" id="stamp">EXPIRED</div>
   </div>
 
   <script>
     const statusEl = document.getElementById("status");
+    const stampEl = document.getElementById("stamp");
 
     setTimeout(() => {
       statusEl.textContent = "Status: Verifying authenticity…";
@@ -108,6 +136,7 @@
           ISSUED YEAR: 1930
         </div>
       `;
+      stampEl.style.display = "block";
     }, 2600);
   </script>
 </body>
