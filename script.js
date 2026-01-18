@@ -1,42 +1,70 @@
-const btn = document.getElementById("confirmBtn");
+const terminal = document.getElementById("terminal");
+const beep = document.getElementById("beep");
 
-// 🔊 Web Audio 경고음
-function playErrorTone() {
-  const ctx = new (window.AudioContext || window.webkitAudioContext)();
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
+// 👉 여기만 고치면 카드 정보 변경 가능
+const cardInfo = [
+  "KMIA WEST KARZENIC",
+  "Internal Security Network",
+  "",
+  "Reading NFC credential...",
+  "",
+  "Name: Rozan Kivadin Skadren",
+  "Sex: Male",
+  "Date of Birth: 1887-12-17",
+  "Issued: 1930",
+  "Occupation: Royal Guard",
+  "",
+  "Authenticating..."
+];
 
-  osc.type = "square";
-  osc.frequency.value = 160;
+let lineIndex = 0;
+let charIndex = 0;
 
-  gain.gain.setValueAtTime(0.0001, ctx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.3, ctx.currentTime + 0.03);
-  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.4);
+function typeNextChar() {
+  if (lineIndex >= cardInfo.length) {
+    setTimeout(showExpired, 1200);
+    return;
+  }
 
-  osc.connect(gain);
-  gain.connect(ctx.destination);
+  if (!terminal.children[lineIndex]) {
+    const line = document.createElement("div");
+    line.className = "line";
+    terminal.appendChild(line);
+  }
 
-  osc.start();
-  osc.stop(ctx.currentTime + 0.4);
+  const lineEl = terminal.children[lineIndex];
+  const text = cardInfo[lineIndex];
+
+  if (charIndex < text.length) {
+    lineEl.textContent += text.charAt(charIndex);
+    charIndex++;
+
+    if (charIndex % 2 === 0) {
+      beep.currentTime = 0;
+      beep.play().catch(() => {});
+    }
+
+    setTimeout(typeNextChar, 32);
+  } else {
+    charIndex = 0;
+    lineIndex++;
+    setTimeout(typeNextChar, 260);
+  }
 }
 
-btn.addEventListener("click", () => {
-  playErrorTone();
+function showExpired() {
+  const fail = document.createElement("div");
+  fail.className = "line fail";
+  fail.textContent =
+    "❌ AUTHORIZATION FAILED\n" +
+    "REASON: CREDENTIAL EXPIRED\n" +
+    "STATUS: VOID";
 
-  // 기존 iframe/동적 요소 제거
-  document.querySelectorAll('iframe').forEach(f => f.remove());
+  terminal.appendChild(fail);
 
-  const error = document.createElement("div");
-  error.className = "error-screen";
-  error.innerHTML = `
-    ACCESS DENIED<br>
-    UNAUTHORIZED CREDENTIAL<br>
-    SECURITY VIOLATION LOGGED
-  `;
-  document.body.appendChild(error);
+  beep.currentTime = 0;
+  beep.play().catch(() => {});
+}
 
-  // 1.8초 후 YouTube 영상 페이지로 이동
-  setTimeout(() => {
-    window.location.href = "https://youtu.be/g7wCr-IOpqY?si=6ftxZIc4iLxZlvPo";
-  }, 1800);
-});
+// 시작
+setTimeout(typeNextChar, 700);
